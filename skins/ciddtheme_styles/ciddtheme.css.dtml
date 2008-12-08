@@ -1,0 +1,426 @@
+/*
+  This file is based on the ploneCustom.css.dtml shipped with Plone.
+
+  <dtml-with base_properties> (do not remove this)
+  <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either)
+*/
+
+/* YOUR CSS RULES START HERE */
+
+/* Globally-applicable tags that fall outside viewlets and portlets */
+body {
+    font-size:80%;
+    min-width:800px;
+    max-width:1450px;
+}
+
+#content a {
+    border:none;
+    text-decoration:underline;
+}
+
+#content a[href^="http:"], 
+#content a.link-external {
+    background:none;
+    padding-left:0;
+}
+
+#content .managePortletsLink {
+    display:none;
+}
+
+h1 {
+    font-size:200%;
+    font-weight:bold;
+    border-bottom:1px solid &dtml-colorOne;;
+}
+
+h2 {
+    border:none;
+    font-weight:bold;
+}
+
+h1 a:link,
+h2 a:link,
+h3 a:link,
+h4 a:link,
+h5 a:link {
+    color:&dtml-linkColor; !important;
+    text-decoration:underline;
+}
+
+h1 a:visited,
+h2 a:visited,
+h3 a:visited,
+h4 a:visited,
+h5 a:visited {
+    color:&dtml-linkVisitedColor; !important;
+    text-decoration:underline;
+}
+
+.documentActions{
+    display:none;
+}
+
+.documentContent ul {
+    list-style-image:url(http://localhost:8080/cidd/bullet.gif);
+}
+
+li li {
+	list-style-image:none;
+	list-style-type:disc;
+}
+
+.postedDate {
+    text-align:left;
+    font-size:70%;
+    color:&dtml-colorTwo;;
+}
+
+.tileImage {
+    float:left;
+    margin:1em 0.5em 0.5em 0;
+}
+
+.tileItem {
+    border-top:none;
+    border-bottom:1px solid &dtml-globalBorderColor;
+}
+
+/* Portal top */
+#portal-header {
+    border-top:3px solid &dtml-colorOne;;
+    border-bottom:3px solid &dtml-colorOne;;
+}
+
+/* Search box */
+#portal-searchbox {
+    margin:0.75em 0pt 0pt;
+}
+
+#portal-searchbox a:hover {
+    text-decoration:underline;
+}
+
+/* Global navigation */
+#portal-globalnav {
+    display:none;
+}
+
+/* Breadcrumbs */
+#portal-breadcrumbs {
+    border-bottom:none;
+    color:&dtml-colorTwo;
+}
+
+/* Portal footer */
+#portal-footer {
+    border:none;
+    margin-bottom:0;
+    padding-bottom:0;
+    color:&dtml-colorTwo;;
+    font-family:&dtml-headingFontFamily;;
+    font-size:85%;
+}
+
+#portal-footer a:hover {
+    text-decoration:underline;
+}
+
+#portal-personaltools {
+    border:none;
+    font-family:&dtml-headingFontFamily;;
+    font-size:85%;
+    text-align:center;
+}
+
+#portal-siteactions {
+    float:none;
+    text-align:center;
+    font-family:&dtml-headingFontFamily;;
+    font-size:85%;
+}
+
+#portal-siteactions li a,
+#portal-personaltools li a {
+    color:&dtml-linkColor;;
+}
+
+#portal-siteactions li a:hover {
+    text-decoration:underline;
+    color:&dtml-linkColor;;
+    border:1px solid &dtml-globalBackgroundColor;
+}
+
+#portal-personaltools li a:hover {
+    text-decoration:underline;
+    color:&dtml-linkColor;;
+}
+
+/* Navigation portlet */
+#portal-column-one .visualPadding {
+    padding:1em 0 1em 0.5em;
+}
+
+#portal-column-one .portletItem { /* get rid of the left and right borders */
+    border:none;
+}
+
+#portal-column-one .portlet { /* get rid of the bottom border */
+    border-bottom:none;
+}
+
+.portletNavigationTree .portletHeader { /* stop it saying "navigation" or anything else */
+    display:none;
+}
+
+.portletNavigationTree { /* get rid of the top border and assign the font characteristics */
+    font-size:125%;
+    font-family:&dtml-headingFontFamily;;
+    border-top:none;
+}
+
+.portletNavigationTree .navTreeLevel1 { /* use a smaller font for sub-menu items */
+    font-size:90%;
+    line-height:1em;
+}
+
+.portletNavigationTree .navTreeLevel1 li { /* use a smaller inter-item spacing for sub-menu items */
+    padding-bottom:0.5em;
+    padding-left:1em;
+}
+
+.navTreeItem a, 
+dd.portletItem .navTreeItem a { /* make the menu items look like buttons, with a colored background */
+    padding:0.25em 0.25em 0.25em 1em;
+    border:1px solid &dtml-globalBorderColor;;
+    background-color:&dtml-globalBorderColor;;
+}
+
+.navTreeItem a:hover, 
+dd.portletItem .navTreeItem a:hover { /* turn things a different color when we hover over them */
+   background-color: &dtml-colorOne;;
+   color:&dtml-globalBackgroundColor;;
+   text-decoration:underline;
+}
+
+.navTreeItem a.navTreeCurrentItem, 
+dd.portletItem .navTreeItem a.navTreeCurrentItem,
+.navTreeItem a.navTreeItemInPath,
+dd.portletItem .navTreeItem a.navTreeItemInPath { /* make the main menu item we are currently on have a different background color */
+    background-color:&dtml-globalBackgroundColor;;
+}
+
+.navTreeItem a.navTreeItemInPath,
+dd.portletItem .navTreeItem a.navTreeItemInPath { /* keep the different background color for the main menu item even if we are on a subitem */
+    border:1px solid &dtml-globalBackgroundColor;;
+}
+
+.navTreeItem a:hover.navTreeCurrentItem, 
+dd.portletItem .navTreeItem a:hover.navTreeCurrentItem { /* we have to reset the hover color */
+    color:&dtml-linkColor;;
+    text-decoration:none;
+}
+.navTreeCurrentNode {
+    background-color:&dtml-globalBackgroundColor;;
+}
+
+.navTreeCurrentNode .navTreeItem a, 
+dd.portletItem .navTreeCurrentNode .navTreeItem a,
+.navTreeItemInPath .navTreeItem a, 
+dd.portletItem .navTreeItemInPath .navTreeItem a { /* make the li items in the current node look different from higher-level items */
+   background-color:&dtml-globalBackgroundColor;;
+   border-top:1px solid &dtml-globalBackgroundColor;;
+   border-right:1px solid &dtml-globalBackgroundColor;;
+}
+
+.navTreeCurrentNode .navTreeItem a:hover, 
+dd.portletItem .navTreeCurrentNode .navTreeItem a:hover,
+.navTreeItemInPath .navTreeItem a:hover, 
+dd.portletItem .navTreeItemInPath .navTreeItem a:hover,
+.navTreeItem a:hover.navTreeItemInPath,
+dd.portletItem .navTreeItem a:hover.navTreeItemInPath  { /* arrgghhh, we have to reset the hover color again */
+    background-color:&dtml-colorOne;;
+    color:&dtml-globalBackgroundColor;;
+}
+
+.navTreeCurrentItem {
+    background:url(menu-arrow1.png) left center no-repeat;
+    border:1px solid &dtml-globalBackgroundColor; !important;
+    color:&dtml-colorOne;;
+}
+
+.portletItem a:visited.navTreeCurrentItem { /* Need to override a stupid setting in line 50 of portlets.css */
+    color:&dtml-colorOne;;    
+}
+
+/* Home page */
+.section-front-page #parent-fieldname-text {
+    display:none;
+}
+
+.section-front-page .documentDescription {
+    display:none;
+}
+
+.section-front-page .documentFirstHeading {
+    margin-bottom:1em;
+}
+
+.section-front-page #columnA .portletHeader {
+    background:none;
+    border:none;
+    text-transform:none;
+    font-size:135%;
+    font-weight:bold;
+    padding-left:0px;
+}
+
+.section-front-page #columnA .portletHeader {
+    font-family:&dtml-headingFontFamily;;
+}
+
+.section-front-page #columnA .portletHeader a {
+    text-decoration:none;
+    color:&dtml-fontColor;;
+}
+
+.section-front-page #columnA .portletItem {
+    border-left:none;
+    border-right:none;
+    border-top:none;
+    padding-bottom:2em;
+}
+
+.section-front-page #columnA .portletItem a {
+    font-family:&dtml-headingFontFamily;;    
+}
+
+.section-front-page #columnA .portletFooter {
+    background:none;
+    border:none;
+    font-size:115%;
+    text-transform:lowercase;
+    text-align:left;
+}
+
+.section-front-page #columnA .portlet {
+    border:none;
+}
+
+.section-front-page #columnA .portletItemImage {
+    float:right;
+    padding:0.25em 1em;
+}
+
+.section-front-page #columnA .portletItemTitleLink {
+    font-size:115%;
+    font-weight:bold;
+}
+
+.section-front-page #columnA .portletItemDescription {
+    display:block;
+    padding-top:0.25em;
+}
+
+.section-front-page .paperTitle {
+    color:&dtml-colorTwo;;
+}
+
+/* Stuff to do with publications*/
+#paperDetails {
+    border:2px solid &dtml-globalBorderColor;;
+    padding:0.75em;
+    margin-bottom:1em;
+    font-weight:bold;
+}
+
+.paperTitle,
+.paperAuthors,
+.paperJournal,
+.paperJournalRefs,
+.paperDoi {
+    font-weight:normal;
+}
+
+.paperJournal {
+    font-style:italic;
+}
+
+
+/* People listings */
+.tileItem .facultyStaffDirectory ul.jobTitle {
+	margin-bottom:0;
+	font-size:90%;
+}
+
+/* People section */
+.category {
+	font-weight:bold;
+}
+
+.phone {
+    background:url(phone_icon.gif) left center no-repeat;
+    padding-left:12px;
+}
+
+.classificationList {
+    display:none;
+}
+
+.jobTitle, .facultyStaffDirectory ul.jobTitle {
+    color:&dtml-colorTwo;;
+    background:color&dtml-globalBackgroundColor;;
+    padding-top:0.5em;
+    margin-bottom:0.5em;
+    line-height:1em;
+}
+
+.facultyStaffDirectory ul.jobTitle li {
+    margin-bottom:0.5em;
+}
+
+.facultyStaffDirectory.personView h1 {
+    margin-top:-0.1em;
+}
+
+.facultyStaffDirectory.personView .headshot {
+    float:right;
+    margin:0.5em 0 1em 0.5em;
+    width:160px;
+}
+
+.sideBar {
+    width:&dtml-columnTwoWidth;;
+    float:right;
+    margin-left:2em;
+    margin-bottom:1em;
+    font-size:90%;
+}
+
+.studySystems {
+    border:2px solid &dtml-globalBorderColor;;
+    padding:0.25em 0.5em;
+    margin:0.5em 0 1em 0;
+}
+
+.bioPublications {
+    border:2px solid &dtml-colorOne;;
+    padding:0.25em 0.5em;
+    margin:0.5em 0 1em 0;
+    
+}
+
+.box1 {
+    border:2px solid &dtml-colorOne;;
+    padding:0.75em;    
+}
+
+/* other cidd-specific tags */
+
+/* YOUR CSS RULES STOP HERE */
+
+/* </dtml-with> */
+
+/* Latest version of the documentation on pre-defined properties from Plone 
+   can be found in CMFPlone/skins/plone_styles/ploneCustom.css.dtml */

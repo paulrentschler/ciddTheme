@@ -1,0 +1,3 @@
+<div id="columnA">
+	<tal:block tal:replace="structure provider:ciddtheme.portletsbelow1" />
+</div>

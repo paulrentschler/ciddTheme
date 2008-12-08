@@ -1,0 +1,99 @@
+<dl class="portlet portletCollection"
+    i18n:domain="plone"
+    tal:define="collection_url view/collection_url;
+                plone_view context/@@plone;
+                toLocalizedTime nocall:plone_view/toLocalizedTime;
+                getIcon nocall:plone_view/getIcon;">
+<tal:comment tal:condition="nothing">
+Modified so that 
+- we can call news items with this; for each news item display images and links to journal websites as relevant
+- external links link directly out to the site in question, not to the intermediate Plone site page
+- item icons are not shown
+</tal:comment>
+
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        <a tal:attributes="href collection_url" tal:omit-tag="not:view/data/show_more">
+            <span tal:content="view/data/header" />
+        </a>
+        <span class="portletTopRight"></span>
+    </dt>
+
+    <tal:events tal:repeat="obj view/results">
+    <dd class="portletItem"
+        tal:define="oddrow repeat/obj/odd;
+                    item_type obj/portal_type"
+        tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd'">
+
+        <a tal:condition="python: item_type=='Link'"
+           href="#"
+           class="tile"
+           tal:attributes="href obj/getRemoteUrl;
+                           title obj/Description">
+            <span tal:replace="obj/pretty_title_or_id">
+             Title
+            </span>
+        </a>
+
+        <a tal:condition="python: item_type!='Link'"
+           href="#"
+           class="tile portletItemTitleLink"
+           tal:attributes="href obj/getURL;">
+            <span tal:replace="obj/pretty_title_or_id">
+             [Title]
+            </span>
+        </a>
+		<tal:newsitem tal:condition="python:item_type=='News Item'">
+			<span class="portletItemImage" tal:condition="python: obj.getObject().getImage()">
+				<tal:imageHere tal:define="pic python:obj.getObject().tag(scale='thumb')" 
+                      tal:replace="structure pic">
+						[if there is an image associated with the news item, pull it in]
+				</tal:imageHere>
+			</span>
+			<span class="portletItemDescription" tal:content="obj/Description">[Description]</span>
+			<ul tal:condition="python: obj.getObject().paperAuthors">
+				<li>
+					<a href="" tal:attributes="href obj/getURL; title obj/pretty_title_or_id">Read longer synopsis</a>
+				</li>
+				<li tal:define="journalURL python: obj.getObject().paperUrl;
+			                    pubYear python: obj.getObject().paperYear;
+                                pubTitle python:obj.getObject().paperTitle"
+					 tal:condition="journalURL">
+					<a href="" tal:attributes="href journalURL; title pubTitle">
+						Read paper on journal website
+					</a>: 
+					<span class="paperTitle" tal:content="pubTitle">[paper's title, linked to abstract on journal website]</span>, 
+					<span class="paperJournal" tal:content="python: obj.getObject().paperJournal">[Journal]</span>						
+					<tal:publicationYear tal:condition="pubYear">
+						(<span class="paperYear" tal:content="pubYear">[publication year]</span>)
+					</tal:publicationYear>
+				</li>
+				<li tal:define="prURL python: obj.getObject().pressreleaseUrl;" tal:condition="prURL">
+					<a href="" tal:attributes="href prURL">Go to a press release about this research</a>
+				</li>
+			</ul>
+		</tal:newsitem>
+
+		<tal:notnewsitem tal:condition="python:item_type!='News Item'">
+			<span class="portletItemDescription" tal:content="obj/Description">[Description]</span>
+		</tal:notnewsitem>
+
+		 <span class="portletItemDetails postedDate"
+               tal:condition="view/data/show_dates">&#8212;&nbsp;Posted
+               <span tal:replace="python:toLocalizedTime(obj.Date)">[Date made public on site]</span>
+         </span>
+
+	    </dd>
+    </tal:events>
+   
+    <dd class="portletFooter" tal:condition="view/data/show_more">
+        <span class="portletBottomLeft"></span>
+        <span>
+        <a tal:attributes="href collection_url" i18n:translate="more_url">
+             &raquo;&nbsp;More <span tal:replace="view/data/header">[whatever this collection's title is]</span>
+             </a>
+        </span>
+        <span class="portletBottomRight"></span>
+    </dd>
+
+</dl>

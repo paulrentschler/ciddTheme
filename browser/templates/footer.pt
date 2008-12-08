@@ -1,0 +1,23 @@
+<div id="portal-footer" i18n:domain="plone">
+	<p>
+		<span i18n:translate="description_copyright" tal:omit-tag="">
+			Copyright
+			<abbr title="Copyright" i18n:name="copyright" i18n:attributes="title title_copyright;">&copy;</abbr>
+			<span i18n:name="current_year" 
+					   tal:define="now modules/DateTime/DateTime" 
+					   tal:content="now/year" />
+			<a href="" tal:attributes="href context/portal_url">Center for Infectious Disease Dynamics</a> at 
+			<a href="http://www.psu.edu/" title="Penn State home page">The Pennsylvania State University</a>
+		</span>
+	</p>
+	<p class="adr">
+		<span class="street-address">208 Mueller Lab</span>, 
+		<span class="locality">University Park</span>, 
+		<span class="region">PA</span> 
+		<span class="postal-code">16802</span>, 
+		<span class="country-name">U.S.A</span>.
+	</p>
+	<p>
+		<a href="http://www.psu.edu/ur/legal.html" title="Official statements on privacy, nondiscrimination, equal opportunity and copyright.">Privacy and legal statements</a>
+	</p>
+</div>

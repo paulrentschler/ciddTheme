@@ -1,0 +1,116 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+<tal:comment tal:replace="nothing">
+Created by Catherine Williams to be the view for news items that are synopses of recent research
+Based on news_item_view.pt in CMFPlone/skins/plone_content
+</tal:comment>
+<div metal:fill-slot="main">
+    <tal:main-macro metal:define-macro="main"
+          tal:define="kssClassesView context/@@kss_field_decorator_view;
+                      getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
+                      templateId template/getId;
+                      text python:here.CookedBody(stx_level=2);
+                      len_text python:len(text.strip())">
+
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+        <h1 class="documentFirstHeading"> 
+            <metal:field use-macro="python:here.widget('title', mode='view')">
+            Title
+            </metal:field>
+        </h1>
+
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
+		
+		<div id="maincontents">
+	        <p class="documentDescription">
+	            <metal:field use-macro="python:here.widget('description', mode='view')">
+	            Description
+	            </metal:field>
+	        </p>
+
+	        <div tal:replace="structure provider:plone.abovecontentbody" />
+	
+			<div class="sideBar">
+
+				<div id="paperDetails">
+					<p tal:condition="context/paperYear|nothing">Published:
+						 <span tal:content="context/paperYear">[Year of publication]</span>
+					</p>
+					<p tal:condition="nocall:context/paperAuthors|nothing">Author(s):
+						<span class="paperAuthors" tal:repeat="author context/paperAuthors">
+							<tal:paperAuthors tal:define="numberAuthors repeat/author/length">
+								<tal:moreThanOneAuthor tal:condition="python: numberAuthors > 1">
+									<span tal:condition="repeat/author/end">&amp; </span>
+								</tal:moreThanOneAuthor>
+								<span tal:replace="author">[Author name]</span><tal:moreThanTwoAuthors tal:condition="python: numberAuthors > 2"><span tal:condition="not:repeat/author/end">, </span></tal:moreThanTwoAuthors>
+							</tal:paperAuthors>
+						</span>
+					</p>
+					<p tal:condition="context/paperTitle|nothing">Title: 
+							<span class="paperTitle" tal:content="context/paperTitle">[Title of paper]</span>
+					</p>
+					<p  tal:condition="context/paperJournal|nothing">Journal:
+						<a href="" tal:condition="context/paperUrl|nothing" tal:attributes="href context/paperUrl">
+							<span class="paperJournal" tal:content="context/paperJournal">[Journal name]</span>
+							<span class="paperJournalRef" tal:condition="context/paperJournalRef|nothing" tal:content="context/paperJournalRef">[Volume and page numbers]</span>
+						</a>
+						<tal:noOnlinePaper tal:condition="not:context/paperUrl|nothing">
+							<span class="paperJournal" tal:content="context/paperJournal">[Journal name]</span>
+							<span class="paperJournalRef" tal:condition="context/paperJournalRef|nothing" tal:content="context/paperJournalRef">[Volume and page numbers]</span>
+						</tal:noOnlinePaper>
+					</p>
+					<p tal:condition="context/paperDoi|nothing">doi: 
+						<span class="paperDoi" tal:content="context/paperDoi">[Digital Object Identifier]</span>
+					</p>
+				</div>
+				<div class="box1" tal:condition="context/pressreleaseUrl|nothing">
+					<p>
+						<a tal:attributes="href context/pressreleaseUrl">&raquo;&nbsp;A press release about this research</a>
+					</p>
+				</div>
+			</div> <!-- end of sidebar -->
+	        <div class="newsImageContainer"
+	             tal:condition="here/image_mini|nothing">
+	            <a href="#"
+	               tal:attributes="href string:$here_url/image/image_view_fullscreen"
+	               id="parent-fieldname-image">
+	               <img tal:replace="structure python: here.tag(scale='mini', css_class='newsImage')" src="" alt="" />
+	            </a>
+	            <p class="discreet">
+	              <metal:field use-macro="python:here.widget('imageCaption', mode='view')">
+	              Image Caption
+	              </metal:field>
+	            </p>
+	        </div>
+
+	        <div metal:define-macro="text-field-view"
+	             id="parent-fieldname-text" class="stx"
+	             tal:define="kss_class python:getKssClasses('text',
+	                         templateId=templateId, macro='text-field-view');
+	                         text text|here/getText|nothing"
+	             tal:condition="text"
+	             tal:attributes="class python:test(here.Format() in ('text/structured',
+	                                                   'text/x-rst', ), 'stx' + kss_class, 'plain' + kss_class)">
+	            <div metal:define-slot="inside" tal:replace="structure text">The body</div>
+	        </div>
+        </div>
+
+        <div metal:use-macro="here/document_relateditems/macros/relatedItems">
+            Show related items if they exist
+        </div>
+        
+        <div tal:replace="structure provider:plone.belowcontentbody" />
+
+    </tal:main-macro>
+</div>
+
+</body>
+</html>
+

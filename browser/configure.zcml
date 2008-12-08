@@ -1,0 +1,107 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+	xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="ciddtheme">
+
+    <!-- "ciddtheme" Zope 3 skin layer.
+         Register views, viewlets and resources for this layer to make sure
+         they only apply to the 'ciddtheme' theme.
+         You can also use this layer to override default Plone browser views
+         and viewlets only within the 'ciddtheme' theme.
+      -->
+    <interface
+        interface=".interfaces.IThemeSpecific"
+        type="zope.publisher.interfaces.browser.IBrowserSkinType"
+        name="ciddtheme"
+        />
+
+    <!-- The customized logo -->
+    <browser:viewlet
+        name="ciddtheme.logo"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class=".viewlets.LogoViewlet"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+        />
+
+	<!-- The customized searchbox -->
+    <browser:viewlet
+        name="ciddtheme.searchbox"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class=".viewlets.SearchBoxViewlet"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+        />
+
+	<!-- Move site actions  --> 
+    <browser:viewlet
+        name="plone.site_actions"
+        manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+        class="plone.app.layout.viewlets.common.SiteActionsViewlet"
+        permission="zope2.View"
+        layer=".interfaces.IThemeSpecific"
+        />
+
+	<!-- Move personal bar  --> 
+    <browser:viewlet
+        name="plone.personal_bar"
+        manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+        class="plone.app.layout.viewlets.common.PersonalBarViewlet"
+        permission="zope2.View"
+        layer=".interfaces.IThemeSpecific"
+        />
+	<!-- The customized footer -->
+    <browser:viewlet
+        name="ciddtheme.footer"
+        manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+        class=".viewlets.FooterViewlet"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+        />
+
+	<!-- The customized collection portlet -->
+	<include package ="plone.portlet.collection" />			
+			
+	<plone:portletRenderer
+		portlet="plone.portlet.collection.collection.ICollectionPortlet"
+		template="templates/collection.pt"
+		layer=".interfaces.IThemeSpecific"			
+		/>
+		
+	<!-- Add Viewlets for portlets below content -->
+	<browser:viewlet
+		name="ciddtheme.portletsbelow1"
+		manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+		template="templates/portletsbelow1.pt"
+		layer=".interfaces.IThemeSpecific"
+	    permission="zope2.View"
+	    />
+	
+	<!-- Add a management view for the portletmanager for the portlets below content. -->		
+	<browser:page
+		for = "plone.portlets.interfaces.ILocalPortletAssignable"
+		class = "plone.app.portlets.browser.manage.ManageContextualPortlets"
+		name = "manage-portletsbelowcontent"
+		template = "templates/manageportletsbelow.pt"
+		permission = "plone.app.portlets.ManagePortlets"
+		layer = ".interfaces.IThemeSpecific"
+		/>
+
+
+    <!-- Resource directory for stylesheets -->
+    <browser:resourceDirectory
+        name="ciddtheme.stylesheets"
+        directory="stylesheets"
+        layer=".interfaces.IThemeSpecific"
+        />
+
+    <!-- Resource directory for images -->
+    <browser:resourceDirectory
+        name="ciddtheme.images"
+        directory="images"
+        layer=".interfaces.IThemeSpecific"
+        />
+
+
+</configure>

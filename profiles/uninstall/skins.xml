@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- Remove our skin layers and set defaults back to Plone Default -->
+
+<object name="portal_skins" allow_any="False" cookie_persistence="False"
+        default_skin="Plone Default" request_varname="plone_skin">
+
+ <object name="ciddtheme_custom_images"
+    meta_type="Filesystem Directory View"
+    remove="True" />
+ <object name="ciddtheme_styles"
+    meta_type="Filesystem Directory View"
+    remove="True" />
+ <object name="ciddtheme_custom_templates"
+    meta_type="Filesystem Directory View"
+    remove="True" />
+
+ <skin-path name="ciddtheme" remove="True" />
+
+</object>

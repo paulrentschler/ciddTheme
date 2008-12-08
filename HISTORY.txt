@@ -1,0 +1,8 @@
+Changelog for ciddtheme
+
+    (name of developer listed in brackets)
+
+ciddtheme 1.0 - Unreleased
+
+    - Generated skeleton product from DIYPloneStyle 3.0.
+      [generator]

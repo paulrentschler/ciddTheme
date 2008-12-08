@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!-- This file holds the setup configuration of the viewlet managers
+     for the "ciddtheme" skin.
+     -->
+
+<object>
+
+<!-- hide Plone's defaults -->
+		<hidden manager="plone.portalheader" skinname="ciddtheme">
+		    <viewlet name="plone.logo" />
+		    <viewlet name="plone.searchbox" />
+		    <viewlet name="plone.site_actions" />
+		</hidden>
+
+		<hidden manager="plone.portaltop" skinname="ciddtheme">
+			<viewlet name="plone.personal_bar" />
+		</hidden>
+
+		<hidden manager="plone.portalfooter" skinname="ciddtheme">
+		    <viewlet name="plone.footer" />
+		    <viewlet name="plone.colophon" />
+		</hidden>
+
+<!-- insert ours instead -->
+		<order manager="plone.portalheader" skinname="ciddtheme">
+			<viewlet name="ciddtheme.logo" />
+			<viewlet name="ciddtheme.searchbox" insert-before="ciddtheme.logo" />
+		</order>
+
+		<order manager="plone.portalfooter" skinname="ciddtheme">
+			<viewlet name="ciddtheme.footer" />
+			<viewlet name="plone.site_actions" />
+			<viewlet name="plone.personal_bar" />
+		</order>
+
+<!-- viewlet for portlets below content -->
+		<order manager = "plone.belowcontent" skinname = "ciddtheme">
+			<viewlet name="plone.nextprevious"/>
+			<viewlet name = "ciddtheme.portletsbelow1" insert-after = "plone.nextprevious" />
+		</order>
+
+</object>

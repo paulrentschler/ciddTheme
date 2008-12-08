@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<portlets> 
+<!-- Register new portlet managers -->
+	<portletmanager
+		name = "ciddtheme.portletsbelow1"
+          type = "Products.ciddtheme.browser.interfaces.IPortletsBelowContent"
+                  />
+
+
+</portlets>

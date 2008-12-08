@@ -1,0 +1,23 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="ciddtheme">
+
+  <genericsetup:registerProfile
+      name="default"
+      title="ciddtheme"
+      directory="profiles/default"
+      description="Extension profile for ciddtheme."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+ 
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="ciddtheme Uninstall Profile"
+      directory="profiles/uninstall"
+      description="Removes ciddtheme"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      />
+</configure>
