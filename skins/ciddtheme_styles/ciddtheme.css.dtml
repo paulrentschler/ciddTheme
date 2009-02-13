@@ -190,6 +190,11 @@ li li {
     padding-left:1em;
 }
 
+li.navTreeItem.visualNoMarker {
+	list-style-image: none !important;
+	list-style-type: none !important;
+}
+
 .navTreeItem a, 
 dd.portletItem .navTreeItem a { /* make the menu items look like buttons, with a colored background */
     padding:0.25em 0.25em 0.25em 1em;
