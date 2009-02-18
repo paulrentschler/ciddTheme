@@ -67,8 +67,8 @@ h5 a:visited {
 }
 
 li li {
-	list-style-image:none;
-	list-style-type:disc;
+        list-style-image:none;
+        list-style-type:disc;
 }
 
 .postedDate {
@@ -190,9 +190,9 @@ li li {
     padding-left:1em;
 }
 
-li.navTreeItem.visualNoMarker {
-	list-style-image: none !important;
-	list-style-type: none !important;
+li.navTreeItem.visualNoMarker { /* remove the bullets in the sub-menu items in IE6 and IE7 */
+    list-style-image: none !important;
+    list-style-type: none !important;
 }
 
 .navTreeItem a, 
@@ -223,6 +223,7 @@ dd.portletItem .navTreeItem a.navTreeItemInPath { /* keep the different backgrou
 
 .navTreeItem a:hover.navTreeCurrentItem, 
 dd.portletItem .navTreeItem a:hover.navTreeCurrentItem { /* we have to reset the hover color */
+    background-color:&dtml-globalBackgroundColor;;
     color:&dtml-linkColor;;
     text-decoration:none;
 }
@@ -355,13 +356,13 @@ dd.portletItem .navTreeItem a:hover.navTreeItemInPath  { /* arrgghhh, we have to
 
 /* People listings */
 .tileItem .facultyStaffDirectory ul.jobTitle {
-	margin-bottom:0;
-	font-size:90%;
+        margin-bottom:0;
+        font-size:90%;
 }
 
 /* People section */
 .category {
-	font-weight:bold;
+        font-weight:bold;
 }
 
 .phone {
