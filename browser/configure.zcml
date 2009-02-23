@@ -48,9 +48,11 @@
         name="plone.personal_bar"
         manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
         class="plone.app.layout.viewlets.common.PersonalBarViewlet"
+        template="templates/personal_bar.pt"
         permission="zope2.View"
         layer=".interfaces.IThemeSpecific"
         />
+        
 	<!-- The customized footer -->
     <browser:viewlet
         name="ciddtheme.footer"
