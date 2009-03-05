@@ -11,7 +11,7 @@
 	Modified to:
 	- get rid of the "read more link"
 	- add a "publication year" to news items that are research synopses
-	- add a different class for photos of people
+	- add contact details for people
 </tal:comment>
 
     <div metal:fill-slot="main">
