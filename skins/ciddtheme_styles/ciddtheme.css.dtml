@@ -422,6 +422,76 @@ dd.portletItem .navTreeItem a:hover.navTreeItemInPath  { /* arrgghhh, we have to
     padding:0.75em;    
 }
 
+
+/* ----- EDITING CONTENT ----- */
+  .documentEditable .documentContent {
+    border: 0;
+  }
+
+  .contentViews {
+    border-color: #797979;
+  }
+
+  .contentViews li a {
+    border: 1px solid #797979;
+    color: #666666;
+  }
+
+  .contentViews li a:hover {
+    background-color: #CCCCCC;
+    color: #666666;
+  }
+
+  .contentViews .selected a {
+    background-color: #CCCCCC;
+    border-bottom: 1px solid #CCCCCC;
+    color: #666666;
+  }
+
+  .contentActions {
+    border-bottom: 1px solid #797979;
+    background-color: #CCCCCC;
+    border-left: 1px solid #797979;
+    border-right: 1px solid #797979;
+    color: #666666;
+  }
+
+  .contentActions li {
+    border-left: 1px solid #797979;
+  }
+
+  .contentActions a {
+    color: #666666;
+  }
+
+  .actionMenu .actionMenuContent {
+    z-index: 10;
+  }
+  
+  .actionMenu .actionMenuContent ul {
+    background: #CCCCCC none repeat scroll 0 0;
+    border-color: #797979;
+  }
+
+  .actionMenu .actionMenuContent li a:hover {
+    background-color: #797979;
+  }
+
+  .actionMenu .actionMenuContent .actionSeparator a {
+    border-top: 1px solid #797979;
+  }
+
+  .documentContent {
+    padding: 1em 0 !important;
+  }
+
+  .documentByLine {
+    color: #666666;
+    margin-left: 1em;
+  }
+
+
+
 /* other cidd-specific tags */
 
 /* YOUR CSS RULES STOP HERE */
