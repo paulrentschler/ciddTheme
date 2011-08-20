@@ -567,6 +567,14 @@ dd.portletItem .navTreeItem a:hover.navTreeItemInPath  { /* arrgghhh, we have to
     margin-left: 1em;
   }
 
+/* ----- MANAGE PORTLET LINKS ----- */
+/*  .managePortletsLink,
+  .managePortletsFallback, */
+  .managePortletsAboveLink,
+  .managePortletsBelowLink,
+  .manageFooterPortletsLink {
+    display: none;
+  }
 
 
 /* other cidd-specific tags */
