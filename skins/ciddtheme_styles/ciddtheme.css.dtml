@@ -333,6 +333,83 @@ dd.portletItem .navTreeItem a:hover.navTreeItemInPath  { /* arrgghhh, we have to
     color:&dtml-colorTwo;;
 }
 
+
+/***** NEW IMPLEMENTATION *****/
+.section-home #parent-fieldname-text {
+    display:none;
+}
+
+.section-home .documentDescription {
+    display:none;
+}
+
+.section-home .documentFirstHeading {
+    margin-bottom:1em;
+}
+
+.section-home #columnA .portletHeader {
+    background:none;
+    border:none;
+    text-transform:none;
+    font-size:135%;
+    font-weight:bold;
+    padding-left:0px;
+}
+
+.section-home #columnA .portletHeader {
+    font-family:&dtml-headingFontFamily;;
+}
+
+.section-home #columnA .portletHeader a {
+    text-decoration:none;
+    color:&dtml-fontColor;;
+}
+
+.section-home #columnA .portletItem {
+    border-left:none;
+    border-right:none;
+    border-top:none;
+    padding-bottom:2em;
+}
+
+.section-home #columnA .portletItem a {
+    font-family:&dtml-headingFontFamily;;    
+}
+
+.section-home #columnA .portletFooter {
+    background:none;
+    border:none;
+    font-size:115%;
+    text-transform:lowercase;
+    text-align:left;
+}
+
+.section-home #columnA .portlet {
+    border:none;
+}
+
+.section-home #columnA .portletItemImage {
+    float:right;
+    padding:0.25em 1em;
+}
+
+.section-home #columnA .portletItemTitleLink {
+    font-size:115%;
+    font-weight:bold;
+}
+
+.section-home #columnA .portletItemDescription {
+    display:block;
+    padding-top:0.25em;
+}
+
+.section-home .paperTitle {
+    color:&dtml-colorTwo;;
+}
+
+
+
+
 /* Stuff to do with publications*/
 #paperDetails {
     border:2px solid &dtml-globalBorderColor;;
