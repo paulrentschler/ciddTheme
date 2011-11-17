@@ -9,73 +9,74 @@
 
   <head>
   </head>
-
+  
 <tal:comment tal:replace="nothing">
-	Modified by Catherine to:
-	- reorder and relabel some of the items, e.g. moved position of photo
-	- Add in fields from the schema extender (study systems, publications)
+  Modified by Catherine to:
+    - reorder and relabel some of the items, e.g. moved position of photo
+    - Add in fields from the schema extender (study systems, publications)
+  Modified by Paul Rentschler (par117@psu.edu) to:
+    - Show lab affiliations (departments) to those with modify rights
 </tal:comment>  
 
   <body>
     <metal:fill fill-slot="main">
-
       <div class="facultyStaffDirectory personView">
-
         <div metal:use-macro="context/document_actions/macros/document_actions">
             [Document actions (print, sendto etc)]
         </div>
         <h1 tal:content="title_string | context/title_or_id" />
 
-	      <div class="sideBar">
-				<div tal:define="ssystems python:context.get('studySystems')" tal:condition="ssystems" class="studySystems">
-					<h3>Study systems include</h3>
-					<tal:studySystems tal:replace="structure ssystems" />				
-				</div>
-				<div tal:define="pubs python:context.get('publishedPapers')" tal:condition="pubs"  class="bioPublications">
-					<h3>Selected publications</h3>
-					<tal:publications tal:replace="structure pubs" />				
-				</div>
-			</div>
-			<div class="caption contactStuff">	
-				<div class="headshot"
-					  tal:condition="context/image_normal|nothing">
-					 <img src="" alt=""
-					  tal:replace="structure python:context.getWrappedField('image').tag(context, scale='normal')" />
-				</div>
-				
+        <div class="sideBar">
+        <div tal:define="ssystems python:context.get('studySystems')" tal:condition="ssystems" class="studySystems">
+          <h3>Study systems include</h3>
+          <tal:studySystems tal:replace="structure ssystems" />				
+        </div>
+        <div tal:define="pubs python:context.get('publishedPapers')" tal:condition="pubs"  class="bioPublications">
+          <h3>Selected publications</h3>
+          <tal:publications tal:replace="structure pubs" />				
+        </div>
+      </div>
+
+      <div class="caption contactStuff">	
+        <div class="headshot"
+            tal:condition="context/image_normal|nothing">
+           <img src="" alt=""
+            tal:replace="structure python:context.getWrappedField('image').tag(context, scale='normal')" />
+        </div>
+
 <tal:comment tal:replace="nothing">
-  The following p for jobtitles is very ugly in being a para with a forced break between jobtitles.
-  However, having it as a ul resulted in grave formatting difficulties (thanks to a ul definition 
-    of padding:0pt in base.css), in that the job title did not drop down below the photo on making 
-    the window small and/or text large.
-  Putting the job titles in a paragraph solves this problem.
+        The following p for jobtitles is very ugly in being a para with a forced break between jobtitles.
+        However, having it as a ul resulted in grave formatting difficulties (thanks to a ul definition of padding:0pt in base.css), 
+          in that the job title did not drop down below the photo on making the window small and/or text large.
+        Putting the job titles in a paragraph solves this problem.
 </tal:comment>
-				<p tal:condition="context/getJobTitles" class="jobTitle">
-					<tal:job tal:repeat="jobTitle context/getJobTitles">
-						<tal:separator tal:define="whatnum repeat/jobTitle/number" tal:condition="python:whatnum>1"><br /></tal:separator>
-						<span tal:replace="jobTitle" />
-					</tal:job>
-				</p>
 
-				<p tal:condition="context/getEmail">
-					<span i18n:translate="FacultyStaffDirectory_label_email" class="category">Email</span>:&nbsp;<span tal:replace="structure python:context.spamProtectFSD(context.getEmail())" />
-				</p>
+        <p tal:condition="context/getJobTitles" class="jobTitle">
+          <tal:job tal:repeat="jobTitle context/getJobTitles">
+            <tal:separator tal:define="whatnum repeat/jobTitle/number" tal:condition="python:whatnum>1"><br /></tal:separator>
+            <span tal:replace="jobTitle" />
+          </tal:job>
+        </p>
 
-				<p tal:condition="context/getOfficePhone" 
-					 class="officePhone">
-					<span i18n:translate="FacultyStaffDirectory_label_officePhone" class="category">Phone</span>:&nbsp;<span tal:replace="context/getOfficePhone"/>
-				</p>
+        <p tal:condition="context/getEmail">
+          <span i18n:translate="FacultyStaffDirectory_label_email" class="category">Email</span>:&nbsp;<span tal:replace="structure python:context.spamProtectFSD(context.getEmail())" />
+        </p>
 
-				<p tal:condition="context/getOfficeAddress"><span class="category">Office</span>:&nbsp;<span tal:replace="structure python:context.getOfficeAddress().replace('\n', '<br />')" /><br />
-					<span tal:replace="context/getOfficeCity" /><tal:block tal:condition="context/getOfficeState">, </tal:block><span tal:replace="context/getOfficeState" /> <span tal:replace="context/getOfficePostalCode" />
-				</p>
-			</div>
+        <p tal:condition="context/getOfficePhone" 
+           class="officePhone">
+          <span i18n:translate="FacultyStaffDirectory_label_officePhone" class="category">Phone</span>:&nbsp;<span tal:replace="context/getOfficePhone"/>
+        </p>
+
+        <p tal:condition="context/getOfficeAddress"><span class="category">Office</span>:&nbsp;<span tal:replace="structure python:context.getOfficeAddress().replace('\n', '<br />')" /><br />
+          <span tal:replace="context/getOfficeCity" /><tal:block tal:condition="context/getOfficeState">, </tal:block><span tal:replace="context/getOfficeState" /> <span tal:replace="context/getOfficePostalCode" />
+        </p>
+      </div>
 
 <tal:comment tal:replace="nothing"> 
       <div class="visualClear"><!-- --></div>
 </tal:comment>
             
-			<div class="bioDetails">
+      <div class="bioDetails">
         <div tal:condition="context/getEducation" class="education">
           <h3><span i18n:translate="FacultyStaffDirectory_label_education">Education</span>:</h3>
           <ol>
@@ -118,28 +119,30 @@
           </dl>
         </div>
 
-				<div tal:condition="context/getWebsites" class="websites" i18n:translate="FacultyStaffDirectory_label_websites">
-				<h2>For more about <span tal:replace="context/title_or_id">[person's name]</span>, see:</h2>
-					<ul>
-						<li tal:repeat="website context/getWebsites">
-							<a href="" tal:attributes="href website" tal:content="website">[URL]</a>
-						</li>
-				   </ul>
-				</div>
-
-        <div class="departments" tal:define="departmentsList context/getDepartments" tal:condition="departmentsList">
-	        <h3><span i18n:translate="FacultyStaffDirectory_label_departments">Lab affiliations</span>:</h3>
-	        <ul>
-	          <tal:block tal:repeat="eachDepartment departmentsList">
-              <li>
-	              <a tal:attributes="href python:eachDepartment.absolute_url()">
-	                <span tal:content="eachDepartment/Title" />
-	              </a>
-	            </li>
-            </tal:block>
-          </ul>
+        <div tal:condition="context/getWebsites" class="websites" i18n:translate="FacultyStaffDirectory_label_websites">
+          <h2>For more about <span tal:replace="context/title_or_id">[person's name]</span>, see:</h2>
+          <ul>
+            <li tal:repeat="website context/getWebsites">
+              <a href="" tal:attributes="href website" tal:content="website">[URL]</a>
+            </li>
+           </ul>
         </div>
 
+        <tal:block tal:condition="python:checkPermission('Modify portal content', context)">
+          <div class="departments" tal:define="departmentsList context/getDepartments" tal:condition="departmentsList">
+            <h3><span i18n:translate="FacultyStaffDirectory_label_departments">Lab affiliations</span>:</h3>
+            <ul>
+              <tal:block tal:repeat="eachDepartment departmentsList">
+                <li>
+                  <a tal:attributes="href python:eachDepartment.absolute_url()">
+                    <span tal:content="eachDepartment/Title" />
+                  </a>
+                </li>
+              </tal:block>
+            </ul>
+          </div>
+        </tal:block>
+        
         <div class="courselisting" 
              tal:define="courses context/getCourses"
              tal:condition="courses">
@@ -187,8 +190,8 @@
             </li>
           </ul>
         </div>
-			</div>
-
+      </div>
     </metal:fill>
+  
   </body>
 </html>
