@@ -77,11 +77,12 @@ Based on news_item_view.pt in CMFPlone/skins/plone_content
 				</div>
 			</div> <!-- end of sidebar -->
 	        <div class="newsImageContainer"
+	             tal:define="caption here/imageCaption|nothing"
 	             tal:condition="here/image_mini|nothing">
 	            <a href="#"
 	               tal:attributes="href string:$here_url/image/image_view_fullscreen"
 	               id="parent-fieldname-image">
-	               <img tal:replace="structure python: here.tag(scale='mini', css_class='newsImage')" src="" alt="" />
+	               <img tal:replace="structure python: here.tag(scale='mini', css_class='newsImage', alt=caption, title=caption)" src="" alt="" />
 	            </a>
 	            <p class="discreet">
 	              <metal:field use-macro="python:here.widget('imageCaption', mode='view')">
